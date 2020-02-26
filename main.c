@@ -37,7 +37,7 @@ int main()
 
             for(i=0;i<6;i++)
             {
-                srand(time(NULL));
+                srand((unsigned)time(NULL)+ b);
                 p[b].rstat[i] = rand() % 18 + 1;
 
                 sleep(1);
