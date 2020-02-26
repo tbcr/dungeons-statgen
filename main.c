@@ -41,7 +41,7 @@ int main()
 
             for(i=0;i<6;i++)
             {
-                p[b].rstat[i] = rand() % 18 + 1;
+                p[b].rstat[i] = rand() % 10 + 9;
             }
 
         printf("STR: %d\n", p[b].rstat[0]);
