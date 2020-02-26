@@ -20,6 +20,7 @@ int main()
 {	
     struct players p[4];
     int i,b;
+    time_t t;
 
 	if(PLATFORM == "windows")
 	{
@@ -32,14 +33,14 @@ int main()
 
     for(b=0;b<4;b++)
     {
+        srand((unsigned)time(&t));
+
         printf("PLAYER %d STATS ARE....\n", b+1);
         printf("---------------------\n");
 
             for(i=0;i<6;i++)
             {
-                srand((unsigned)time(NULL)+ b);
                 p[b].rstat[i] = rand() % 18 + 1;
-
                 sleep(1);
             }
 
