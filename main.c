@@ -33,6 +33,7 @@ int main()
 
     for(b=0;b<4;b++)
     {
+        //Putting the set seed here because putting it in the second for loop will make player 1 and 4 stats the same
         srand((unsigned)time(&t));
 
         printf("PLAYER %d STATS ARE....\n", b+1);
@@ -41,7 +42,6 @@ int main()
             for(i=0;i<6;i++)
             {
                 p[b].rstat[i] = rand() % 18 + 1;
-                sleep(1);
             }
 
         printf("STR: %d\n", p[b].rstat[0]);
@@ -50,6 +50,7 @@ int main()
         printf("INT: %d\n", p[b].rstat[3]);
         printf("WIS: %d\n", p[b].rstat[4]);
         printf("CHA: %d\n\n", p[b].rstat[5]);
+        sleep(1);
     }
     return 0;
 
