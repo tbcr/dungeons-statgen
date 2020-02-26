@@ -3,20 +3,39 @@
 #include<time.h>
 #include<unistd.h>
 
+	#if defined(__WIN32) || defined(_WIN64)
+		#define PLATFORM "windows"
+	#endif
+	
+	#if defined(__APPLE__) || defined(__mach__) || defined(__unix__) || defined(__linux__) || defined(__BEOS__) || defined(__HAIKU__)
+		#define PLATFORM "not-windows"
+	#endif
+
 struct players
 {
     int rstat[6];
 };
 
 int main()
-{
+{	
     struct players p[4];
-    for(int b = 0; b < 4;b++)
+    int i,b;
+
+	if(PLATFORM == "windows")
+	{
+		system("cls");
+	}
+	else if(PLATFORM == "not-windows")
+	{
+		system("clear");
+	}
+
+    for(b=0;b<4;b++)
     {
         printf("PLAYER %d STATS ARE....\n", b+1);
         printf("---------------------\n");
 
-            for(int i=0;i<6;i++)
+            for(i=0;i<6;i++)
             {
                 srand(time(NULL));
                 p[b].rstat[i] = rand() % 18 + 1;
