@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<time.h>
 #include<unistd.h>
+#include<string.h>
 
 	#if defined(__WIN32) || defined(_WIN64)
 		#define PLATFORM "windows"
@@ -14,12 +15,16 @@
 struct players
 {
     int rstat[6];
+    int r[6];
 };
 
 int main()
 {	
     struct players p[4];
-    int i,b;
+    int i,b,spot[6],w,spin;
+    
+    int teb,tea,tec,temp[6];
+    
     time_t t;
 
 	if(PLATFORM == "windows")
@@ -36,14 +41,41 @@ int main()
         //Putting the set seed here because putting it in the second for loop will make player 1 and 4 stats the same
         srand((unsigned)time(&t));
 
+        memset(spot,0,sizeof(spot));
+        
         printf("PLAYER %d STATS ARE....\n", b+1);
         printf("---------------------\n");
-
-            for(i=0;i<6;i++)
-            {
-                p[b].rstat[i] = rand() % 10 + 9;
-            }
-
+        
+        printf("Numbers Rolled: ");
+        
+        //6 Iterations of 3d6, storing value in temp array.
+        for(i=0;i<6;i++)
+        {
+        	tea=rand() % 6;
+        	teb=rand() % 6;
+        	tec=rand() % 6;
+			
+			temp[i]=tea+teb+tec; 
+				
+			printf("%d ",temp[i]);
+        }
+        
+		printf("\n");
+        w= 6;
+        i= 0;
+        
+		while(w > 0)
+		{
+			 spin=rand() % 6;
+			 
+			 if(spot[spin] != 1)
+			 {
+			 	p[b].rstat[spin] = temp[i];
+			 	spot[spin]= 1;
+			 	i++;
+			 	w--;
+			 }
+		}
         printf("STR: %d\n", p[b].rstat[0]);
         printf("DEX: %d\n", p[b].rstat[1]);
         printf("CON: %d\n", p[b].rstat[2]);
