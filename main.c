@@ -15,7 +15,6 @@
 struct players
 {
     int rstat[6];
-    int r[6];
 };
 
 int main()
@@ -41,6 +40,7 @@ int main()
         //Putting the set seed here because putting it in the second for loop will make player 1 and 4 stats the same
         srand((unsigned)time(&t));
 
+        //program will hang if this is not done.
         memset(spot,0,sizeof(spot));
         
         printf("PLAYER %d STATS ARE....\n", b+1);
@@ -51,10 +51,23 @@ int main()
         //6 Iterations of 3d6, storing value in temp array.
         for(i=0;i<6;i++)
         {
-        	tea=rand() % 6;
-        	teb=rand() % 6;
-        	tec=rand() % 6;
-			
+            tea = 9;
+            teb = 9;
+            tec = 9;
+            //Complete and utter BS in 3 while loops.
+            while(tea > 6)
+            {
+            	tea=rand() % 8;
+            }
+            while(teb > 6)
+            {
+                teb=rand() % 8;
+            }
+            while(tec > 6)
+            {
+                tec=rand() % 8;
+            }
+
 			temp[i]=tea+teb+tec; 
 				
 			printf("%d ",temp[i]);
@@ -64,6 +77,7 @@ int main()
         w= 6;
         i= 0;
         
+        //spin2win
 		while(w > 0)
 		{
 			 spin=rand() % 6;
@@ -87,4 +101,3 @@ int main()
     return 0;
 
 }
-
